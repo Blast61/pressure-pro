@@ -12,6 +12,7 @@ export interface Conference {
     name: string;
     description: string;
     date: string;
+    endDate: string;
     location: string;
     price: number;
     category: string [];
