@@ -4,7 +4,7 @@ export interface Speaker {
     title: string;
     company: string;
     bio: string;
-    avatarURL?: string;
+    avatarUrl?: string;
 }
 
 export interface Conference {
