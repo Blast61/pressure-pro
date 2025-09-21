@@ -7,6 +7,8 @@ import Avatar from "@/components/common/Avatar";
 import RegistrationForm from "@/components/conf/RegistrationForm";
 import FavoriteButton from "@/components/common/FavoriteButton";
 
+export const dynamic = "force-dynamic";
+
 export default async function ConferenceDetail({ params }: { params: Promise<{ id: string }>; 
 }){
     const { id } = await params;

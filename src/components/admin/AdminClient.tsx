@@ -5,7 +5,6 @@ import type { Conference } from "@/lib/types";
 
 type SaveMode = "create" | "edit";
 type EditableConference = Omit<Conference, "speakers">;
-type ApiListResponse = { items: EditableConference[] };
 type ApiError = { error: string };
 
 function emptyConference(): EditableConference {
@@ -32,6 +31,8 @@ export default function AdminClient(){
 
     const [mode, setMode] = useState<SaveMode>("create");
     const [draft, setDraft] = useState<EditableConference>(emptyConference());
+    //Raw text the user types for categories, so don't strip trailing commas while typing
+    const [categoryInput, setCategoryInput] = useState<string>("");
 
     //Fetch List
     async function refreshList(){
@@ -39,14 +40,11 @@ export default function AdminClient(){
         setErrorText(null);
         try{
             const res = await fetch("/api/admin/conferences", { cache: "no-store" });
-            // const json = await res.json();
-            // if(queryObjects.ok) throw new Error(json.error || "Failed to load conferences");
-            // setItems(json.items);
-            const data = (await res.json().catch(() => ({}))) as ApiListResponse | ApiError | Record<string, unknown>;
-            if(!res.ok){
-              throw new Error((data as ApiError).error || "Failed to load conferences");
+            const data = (await res.json().catch(() => null)) as | { items?: EditableConference[]; error?: string } | null;
+            if(!res.ok || !data || !Array.isArray(data.items)) {
+              throw new Error(data?.error || `Failed to load conferences (HTTP ${res.status})`);
             }
-            setItems((data as ApiListResponse).items ?? []);
+            setItems(data.items);
         } catch (err: unknown){
             setErrorText(err instanceof Error ? err.message : "Failed to load conferences");
         } finally {
@@ -66,11 +64,13 @@ export default function AdminClient(){
     function startCreate() {
         setMode("create");
         setDraft(emptyConference());
+        setCategoryInput("");
     }
 
     function startEdit(conference: EditableConference) {
         setMode("edit");
-        setDraft({ ...conference});
+        setDraft({ ...conference });
+        setCategoryInput(conference.category.join(", "));
     }
 
     async function submitDraft(){
@@ -79,6 +79,8 @@ export default function AdminClient(){
         const problems: string[] = [];
         if(!draft.id) {
             problems.push("ID is required.");
+        } else if(!/^[a-z0-9-]+$/i.test(draft.id)) {
+          problems.push("ID must be slug-like (letters, numbers, dashes).");
         }
         if(!draft.name){
             problems.push("Name is required.");
@@ -107,16 +109,18 @@ export default function AdminClient(){
             return;
         }
 
-        const payload: Partial<Conference> = {
+        let payload: Partial<Conference> = {
             ...draft,
-            //normalize categories from comma-separated string if user types that in
-            category: Array.isArray(draft.category) 
-                ? draft.category
-                : String(draft.category || "")
-                    .split(",")
-                    .map((s) => s.trim())
-                    .filter(Boolean),
+            //Parse the raw input into an array of strings
+            category: categoryInput.split(",").map((text) => text.trim()).filter(Boolean),
         };
+
+        if(mode === "edit"){
+          //Never send id during updates
+          const copy: Record<string, unknown> = { ...payload };
+          delete copy.id;
+          payload = copy as Omit<Partial<Conference>, "id">;
+        }
 
         if(mode === "create"){
             const res = await fetch("/api/admin/conferences", {
@@ -148,10 +152,13 @@ export default function AdminClient(){
 
     async function deleteConference(id: string) {
         setErrorText(null);
-        const res = await fetch(`/api/admin/conferences/${id}`, { method: "DELETE" });
-        const json = await res.json().catch(() => ({}));
+        //Always encode in case someone created a non-slug ID in dev
+        const url = `/api/admin/conferences/${encodeURIComponent(id)}`;
+        const res = await fetch(url, { method: "DELETE" });
         if(!res.ok) {
-            setErrorText(json.error || "Delete failed");
+          //204 has no body, 404 might; handl both
+          const data = (await res.json().catch(() => null)) as { error?: string } | null;
+            setErrorText(data?.error || `Delete failed (HTTP ${res.status}) for id="${id}"`);
             return;
         }
         await refreshList();
@@ -311,17 +318,15 @@ export default function AdminClient(){
             <input
               id="admin-category"
               className="mt-1 w-full rounded border px-3 py-2"
-              value={draft.category.join(", ")}
+              value={categoryInput}
               onChange={(e) =>
-                setDraft({
-                  ...draft,
-                  category: e.target.value
-                    .split(",")
-                    .map((s) => s.trim())
-                    .filter(Boolean),
-                })
+                setCategoryInput(e.target.value)
               }
               placeholder={knownCategories.join(", ")}
+              onBlur={() => {
+                const normalized = categoryInput.split(",").map((t) => t.trim()).filter(Boolean).join(", ");
+                setCategoryInput(normalized)
+              }}
             />
           </div>
 

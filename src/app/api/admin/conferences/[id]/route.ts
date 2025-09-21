@@ -65,6 +65,7 @@ function validatePartialForUpdate(partial: Partial<Conference>){
     return issues;
 }
 
+export const dynamic = "force-dynamic";
 export async function GET(
     _request: Request,
     { params }: { params: Promise<{ id: string }> }
@@ -94,6 +95,10 @@ export async function PUT(
     }
 
     const partial = raw as Partial<Conference>;
+    //Defensive approach, never allow id to be updated; drop it
+    if("id" in partial){
+        delete (partial as Record<string, unknown>).id;
+    }
     const issues = validatePartialForUpdate(partial);
     if(issues.length){
         return NextResponse.json({ error: issues.join(" ")}, { status: 400 });
