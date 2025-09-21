@@ -5,6 +5,7 @@ import { formatPrice } from "@/lib/utils/price";
 import { computeStatus } from "@/lib/utils/status";
 import Avatar from "@/components/common/Avatar";
 import RegistrationForm from "@/components/conf/RegistrationForm";
+import FavoriteButton from "@/components/common/FavoriteButton";
 
 export default async function ConferenceDetail({ params }: { params: Promise<{ id: string }>; 
 }){
@@ -24,6 +25,7 @@ export default async function ConferenceDetail({ params }: { params: Promise<{ i
             <header className="space-y-2">
                 <h1 className="text-2xl font-semibold">
                     {conference.name}
+                    <FavoriteButton conferenceId={conference.id} size="md" />
                 </h1>
                 <div className="text-neutral-600">
                     {when} | {conference.location} | {formatPrice(conference.price)}

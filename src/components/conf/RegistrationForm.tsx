@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useConferenceValidator } from "@/lib/validators/useConferenceValidator";
+import { useAppStore } from "@/lib/state/app-store";
 
 type RegisterError = { error: string };
 
@@ -41,6 +42,7 @@ export default function RegistrationForm({
     const [submitting, setSubmitting] = useState(false);
     const [msg, setMsg] = useState<string | null>(null);
 
+    const { dispatch } = useAppStore();
     const { isValid, issues, status } = useConferenceValidator(dateISO);
 
     async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -68,7 +70,9 @@ export default function RegistrationForm({
                 const j = (await res.json().catch(() => null)) as RegisterError | null;
                 throw new Error(j?.error || "Registration failed");
             }
+            //Success
             setMsg("Registered! 🎉")
+            dispatch({ type: "add_registration", entry: { conferenceId, name, email, registeredAtMs: Date.now() }});
             setName(""); 
             setEmail("");
             setErrors({}); 
