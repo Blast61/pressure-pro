@@ -3,6 +3,7 @@ import { formatDateRange } from "@/lib/utils/date";
 import { formatPrice } from "@/lib/utils/price";
 import { computeStatus } from "@/lib/utils/status";
 import type { Conference } from "@/lib/types";
+import FavoriteButton from "../common/FavoriteButton";
 
 function StatusBadge({ status }: { status: "Open" | "Closed" | "Sold Out"}) {
     const styleClass = status === "Open"
@@ -46,7 +47,10 @@ export default function ConferenceCard(props: ConferenceCardProps){
                 >
                     {props.name}
                 </Link>
-                <StatusBadge status={registrationStatus} />
+                <div className="flex items-center gap-2">
+                    <StatusBadge status={registrationStatus} />
+                    <FavoriteButton conferenceId={props.id} />
+                </div>
             </header>
 
             <p className="mt-1 text-sm text-neutral-600">
