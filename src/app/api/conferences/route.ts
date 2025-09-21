@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { SEED_CONFERENCES } from "@/data/conferences.seed";
+import { db } from "@/lib/server/db";
 
 type ConferenceListQuery = {
     queryText?: string;
@@ -70,7 +70,7 @@ export async function GET(req: Request) {
     const query = parseListQuery(searchParams);
     
     //Filter
-    const filtered = SEED_CONFERENCES.filter((conf) => {
+    const filtered = db.list().filter((conf) => {
         //name search
         if(query.queryText && !conf.name.toLowerCase().includes(query.queryText.toLowerCase())){
             return false;

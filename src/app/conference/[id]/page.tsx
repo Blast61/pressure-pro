@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { SEED_CONFERENCES } from "@/data/conferences.seed";
+import { db } from "@/lib/server/db";
 import { formatDateRange } from "@/lib/utils/date";
 import { formatPrice } from "@/lib/utils/price";
 import { computeStatus } from "@/lib/utils/status";
@@ -10,7 +10,7 @@ import FavoriteButton from "@/components/common/FavoriteButton";
 export default async function ConferenceDetail({ params }: { params: Promise<{ id: string }>; 
 }){
     const { id } = await params;
-    const conference = SEED_CONFERENCES.find((c) => c.id === id);
+    const conference = db.get(id);
     if(!conference) notFound();
 
     const when = formatDateRange(conference.date, conference.endDate);
