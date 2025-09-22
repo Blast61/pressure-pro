@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { db } from "@/lib/server/db";
 import { formatDateRange } from "@/lib/utils/date";
@@ -6,6 +7,30 @@ import { computeStatus } from "@/lib/utils/status";
 import Avatar from "@/components/common/Avatar";
 import RegistrationForm from "@/components/conf/RegistrationForm";
 import FavoriteButton from "@/components/common/FavoriteButton";
+
+export async function generateMetadata(
+    { params }: { params: Promise<{ id: string }> }
+): Promise<Metadata>{
+    const { id } = await params;
+    const conference = db.get(id);
+    if(!conference) {
+        return { title: "Conference not found" };
+    }
+    const when = formatDateRange(conference.date, conference.endDate);
+    const description = conference.description || `${conference.name} in ${conference.location} | ${when} | ${formatPrice(conference.price)} `;
+    const ogPath = `/conference/${conference.id}/opengraph-image`;
+
+    return {
+        title: conference.name,
+        description,
+        openGraph: {
+            title: conference.name,
+            description,
+            url: `/conference/${conference.id}`,
+            images: [{ url: ogPath }],
+        },
+    }
+}
 
 export const dynamic = "force-dynamic";
 
