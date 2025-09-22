@@ -28,8 +28,9 @@ export default function FiltersClient({
     const [selectedCategories, setSelectedCategories] = useState<string[]>(initial.selectedCategories);
     const [inputStartDate, setInputStartDate] = useState(initial.startDate ?? "");
     const [inputEndDate, setInputEndDate] = useState(initial.endDate ?? "");
-    const [inputMinPrice, setInputMinPrice] = useState(initial.minPrice ?? "");
-    const [inputMaxPrice, setInputMaxPrice] = useState(initial.maxPrice ?? "");
+    //keep as strings so empty field doesn't equal 0
+    const [inputMinPrice, setInputMinPrice] = useState<string>(initial.minPrice != null ? String(initial.minPrice) : "");
+    const [inputMaxPrice, setInputMaxPrice] = useState<string>(initial.maxPrice != null ? String(initial.maxPrice) : "");
 
     function toggleCategory(category: string){
         setSelectedCategories((prev) =>
@@ -40,7 +41,7 @@ export default function FiltersClient({
     }
 
     function applyFilters(){
-        const nextParams = new URLSearchParams(currentSearchParams?.toString());
+        const nextParams = new URLSearchParams(currentSearchParams?.toString() ?? "");
 
         //Always reset pagination when filters change
         nextParams.set("page", "1");
@@ -74,17 +75,14 @@ export default function FiltersClient({
         }
 
         //Prices (only set if numeric)
-        const minNum = Number(inputMaxPrice);
-        if(!Number.isNaN(minNum) && String(inputMinPrice).length > 0) {
-            nextParams.set("minPrice", String(minNum));
+        if(inputMinPrice.trim() !== "") {
+            nextParams.set("minPrice", inputMinPrice.trim());
         } else {
             nextParams.delete("minPrice");
         }
-
-        const maxNum = Number(inputMaxPrice);
-        if(!Number.isNaN(maxNum) && String(inputMaxPrice).length > 0) {
-            nextParams.set("maxPrice", String(maxNum));
-        } else {
+        if(inputMaxPrice.trim() !== ""){
+            nextParams.set("maxPrice", inputMaxPrice.trim());
+        } else{
             nextParams.delete("maxPrice");
         }
 
