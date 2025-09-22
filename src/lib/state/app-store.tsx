@@ -100,8 +100,18 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
         try{
             const raw = window.localStorage.getItem(STORAGE_KEY);
             if(raw) {
-                const parsed = JSON.parse(raw) as AppState;
-                dispatch({ type: "load_from_storage", state: parsed });
+                const parsed = JSON.parse(raw) as Partial<AppState>;
+                dispatch({ type: "set_profile", partial: parsed.profile ?? {} });
+                if(Array.isArray(parsed.favorites)) {
+                    parsed.favorites.forEach((id) => 
+                    dispatch({ type: "toggle_favorite", conferenceId: id })
+                );
+            }
+            if(Array.isArray(parsed.registrations)) {
+                parsed.registrations.forEach((entry) => 
+                dispatch({ type: "add_registration", entry: entry as RegistrationEntry })
+            );
+            }
             }
         } catch {
 

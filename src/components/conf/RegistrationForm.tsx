@@ -12,6 +12,10 @@ function getErrorMessage(err: unknown): string {
     return "Something went wrong";
 }
 
+//Loose emai validation
+const EMAIL_MIN = /[^@\s]+@[^@\s]+\.[^@\s]+/i;
+
+
 function validateFields(name: string, email: string){
     const errors: { name? : string; email?: string } = {};
     const nameField = name.trim();
@@ -19,12 +23,14 @@ function validateFields(name: string, email: string){
 
     if(!nameField) {
         errors.name = "Please enter your name.";
-    } else if(nameField.length < 2) errors.name = "Name must be at least 2 characters.";
+    } else if(nameField.length < 2) {
+        errors.name = "Name must be at least 2 characters.";
+    }
 
     if(!emailField){
         errors.email = "Please enter your email.";
-    } else if(!/^[^\s@]+\.[^\s@]+$/.test(emailField)) {
-        errors.email = "Please enter a valid email."
+    } else if(!EMAIL_MIN.test(emailField)) {
+        errors.email = "Please enter a valid email.";
     }
     return errors;
 }
@@ -48,8 +54,7 @@ export default function RegistrationForm({
     async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setMsg(null);
-
-        //Client-side field validation
+        
         const nextErrors = validateFields(name, email);
         setErrors(nextErrors);
         if(Object.keys(nextErrors).length > 0) return;
@@ -82,10 +87,14 @@ export default function RegistrationForm({
             setSubmitting(false);
         }
     }
-    const disabled = submitting || !isValid || Object.keys(errors).length > 0;
+    //derive current validity from non-stale state
+    const hasErrorsNow = Object.keys(validateFields(name, email)).length > 0
+
+    const disabled = submitting || !isValid || hasErrorsNow;
     
     return (
         <form
+        noValidate
         onSubmit={onSubmit}
         className="mt-6 space-y-4 rounded border p-4"
         aria-busy={submitting}
@@ -96,9 +105,14 @@ export default function RegistrationForm({
                     <span className="rounded bg-indigo-50 px-2 py-1 text-indigo-700">TechMeet 2024</span>
                 )}
                 {!isValid && issues.length > 0 && (
+                    <div className="flex flex-wrap gap-2 text-sm">
+                        {!isValid && issues.length > 0 && (
+
                     <span className="rounded bg-red-50 px-2 py-1 text-red-700">
                         {issues.join("; ")}
                     </span>
+                        )}
+                </div>
                 )}
             </div>
 
@@ -112,7 +126,11 @@ export default function RegistrationForm({
                     name="name"
                     className={`mt-1 w-full rounded border px-3 py-2 ${errors.name ? "border-red-500" : ""}`}
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => {
+                        setName(e.target.value)
+                        //clear the name error as the user types
+                        setErrors((p) => ({ ...p, name: undefined }));
+                    }}
                     onBlur={() => setErrors((p) => ({ ...p, ...validateFields(name, email) }))}
                     autoComplete="name"
                     required
@@ -134,10 +152,19 @@ export default function RegistrationForm({
                 <input
                 id="reg-email"
                 name="email"
-                type="email"
+                type="text"
+                inputMode="email"
+                autoCorrect="off"
+                autoCapitalize="none"
+                spellCheck={false}
                 className={`mt-1 w-full rounded border px-3 py-2 ${errors.email ? "border-red-500" : ""}`}
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={((e) => {
+                    setEmail(e.target.value);
+                    //clear the email error as the user types
+                    setErrors((p) => ({ ...p, email: undefined }));
+                    })
+                }
                 onBlur={() => setErrors((p) => ({ ...p, ...validateFields(name, email) }))}
                 autoComplete="email"
                 required
