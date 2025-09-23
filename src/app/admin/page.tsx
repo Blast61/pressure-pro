@@ -3,5 +3,9 @@ import AdminClient from "@/components/admin/AdminClient";
 export const dynamic = "force-dynamic";
 
 export default function AdminPage(){
-    return <AdminClient />
+    return (
+    <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">    
+        <AdminClient />
+    </main>
+    );
 }
