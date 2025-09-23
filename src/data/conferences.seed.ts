@@ -11,7 +11,7 @@ export const SEED_CONFERENCES: Conference[] = [
         location: "New York",
         price: 990,
         category: ["React", "Web Development"],
-        imageUrl: "",
+        imageUrl: "/logos/react-logo.png",
         speakers: [{
             id: "0",
             name: "Erik Rasmussen",
@@ -120,7 +120,8 @@ export const SEED_CONFERENCES: Conference[] = [
         endDate: "2025-10-08T23:59:59.000Z",
         location: "San Diego, California",
         price: 195,
-        category: ["Healthcare"],
+        category: ["Healthcare", "Software Engineering", "AI"],
+        imageUrl: "/logos/medTech.png",
         speakers: [
         {
             id: "0",
@@ -225,6 +226,7 @@ export const SEED_CONFERENCES: Conference[] = [
         location: "London, United Kingdom",
         price: 175,
         category: ["Blockchain", "web3", "AI"],
+        imageUrl: "/logos/blockchain-logo.png",
         speakers: [
             {
                 id: "0",
@@ -295,6 +297,7 @@ export const SEED_CONFERENCES: Conference[] = [
         endDate: "2025-11-07T23:59:59.000Z",
         location: "Dallas, Texas",
         price: 2895,
+        imageUrl: "/logos/microsoft.png",
         category: ["Software Engineering", "Microsoft", "AI"],
         speakers: [
             {
@@ -391,6 +394,7 @@ export const SEED_CONFERENCES: Conference[] = [
         location: "San Francisco, California",
         price: 3580,
         category: ["Software Engineering"],
+        imageUrl: "/logos/engineer-logo.png",
         speakers: [
             {
                 id: "0",
@@ -486,6 +490,7 @@ export const SEED_CONFERENCES: Conference[] = [
         location: "Las Vegas, Nevada",
         price: 2099,
         category: ["AWS", "Software Engineering"],
+        imageUrl: "/logos/aws.png",
         speakers: [
             {
                 id: "0",
