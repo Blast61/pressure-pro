@@ -4,9 +4,10 @@ import { db } from "@/lib/server/db";
 import { formatDateRange } from "@/lib/utils/date";
 import { formatPrice } from "@/lib/utils/price";
 import { computeStatus } from "@/lib/utils/status";
-import Avatar from "@/components/common/Avatar";
 import RegistrationForm from "@/components/conf/RegistrationForm";
 import FavoriteButton from "@/components/common/FavoriteButton";
+import Chip from "@/components/common/Chip";
+import SpeakersClient from "@/components/conf/SpeakersClient";
 
 export async function generateMetadata(
     { params }: { params: Promise<{ id: string }> }
@@ -48,51 +49,33 @@ export default async function ConferenceDetail({ params }: { params: Promise<{ i
     );
 
     return (
-        <div className="space-y-6">
-            <header className="space-y-2">
-                <h1 className="text-2xl font-semibold">
+        <div className="container mx-auto max-w-5xl space-y-6 px-4 md:px-8">
+            <header className="pt-8 text-center space-y-2">
+                <h1 className="text-4xl font-bold md:text-5xl flex items-center justify-center gap-3">
                     {conference.name}
                     <FavoriteButton conferenceId={conference.id} size="md" />
                 </h1>
-                <div className="text-neutral-600">
+                <div className="text-neutral-500">
                     {when} | {conference.location} | {formatPrice(conference.price)}
                 </div>
-                <div className="flex flex-wrap gap-2">
-                    {conference.category.map((tag) => (
-                        <span key={tag} className="rounded bg-neutral-100 px-2 py-1 text-xs">
-                            {tag}
-                        </span>
-                    ))}
-                </div>
-                <div className="mt-1">
+                {!!conference.category.length && (
+                    <>
+                    <div className="mt-2 flex flex-wrap justify-center gap-2">
+                        {conference.category.map((tag) => (
+                            <Chip key={tag}>{tag}</Chip>
+                        ))}
+                    </div>
                     <StatusBadge status={status} />
-                </div>
+                    </>
+                )}
             </header>
 
-            <section className="prose max-w-none">
+            <section className="flex justify-center prose max-w-none">
                 <p>{conference.description}</p>
             </section>
 
-            {conference.speakers.length > 0 && (
-                <section>
-                    <h2 className="mb-3 text-lg font-medium">
-                        Speakers
-                    </h2>
-                    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                        {conference.speakers.map((s) => (
-                            <li key={s.id} className="flex items-center gap-3 rounded border p-3">
-                                <Avatar name={s.name} src={s.avatarUrl} size={44} />
-                                <div>
-                                    <div className="font-medium">{s.name}</div>
-                                    <div className="text-sm text-neutral-600">
-                                        {s.title} - {s.company}
-                                    </div>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </section>
-            )}
+            {/** Speakers with modal */}
+            <SpeakersClient speakers={conference.speakers} />
 
             <RegistrationForm conferenceId={conference.id} dateISO={conference.endDate ?? conference.date} />
         </div>

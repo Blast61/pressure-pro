@@ -5,6 +5,7 @@ import { formatPrice } from "@/lib/utils/price";
 import { computeStatus } from "@/lib/utils/status";
 import type { Conference } from "@/lib/types";
 import FavoriteButton from "../common/FavoriteButton";
+import Chip from "../common/Chip";
 
 function StatusBadge({ status }: { status: "Open" | "Closed" | "Sold Out"}) {
     const styleClass = status === "Open"
@@ -78,16 +79,11 @@ export default function ConferenceCard(props: ConferenceCardProps){
         </p>
 
         <div className="mt-3 flex flex-wrap gap-2">
-            {props.category.map((tag) => (
-            <span
-                key={tag}
-                className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-800 group-hover:shadow-sm"
-            >
-                {tag}
-            </span>
-            ))}
+          {props.category.map((tag) => (
+            <Chip key={tag}>{tag}</Chip>
+          ))}
         </div>
-        </div>
+      </div>
     </article>
     );
 }
