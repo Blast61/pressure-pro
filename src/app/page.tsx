@@ -1,5 +1,5 @@
 import ConferenceCard from "@/components/conf/ConferenceCard";
-import FiltersClient from "@/components/conf/FiltersClient";
+import SearchPanel from "@/components/conf/SearchPanel";
 import Link from "next/link";
 import { headers } from "next/headers";
 import type { Conference } from "@/lib/types";
@@ -88,9 +88,9 @@ export default async function HomePage({
   qs.set("pageSize", String(pageSize));
 
   // Build origin robustly for server-side fetch
-  const h = headers();
-  const host = (await h).get("host") ?? "localhost:3000";
-  const proto = (await h).get("x-forwarded-proto") ?? "http";
+  const h = await headers();
+  const host = h.get("host") ?? "localhost:3000";
+  const proto = h.get("x-forwarded-proto") ?? "http";
   const origin = `${proto}://${host}`;
 
   // Fetch paginated/filtered list (no-store to avoid stale in-memory copies)
@@ -146,10 +146,10 @@ export default async function HomePage({
       : null;
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">Tech Conference Explorer</h1>
+    <div className="mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:px-8">
+      <h1 className="mt-6 text-center text-6xl font-semibold md:text-5xl">Tech Conference Explorer</h1>
 
-      <FiltersClient
+      <SearchPanel
         allCategories={allCategoriesForUi}
         initial={{
           queryText,
@@ -162,7 +162,7 @@ export default async function HomePage({
         }}
       />
 
-      <p className="text-sm text-neutral-600">
+      <p className="text-center text-sm text-neutral-600">
         Showing{" "}
         {totalItems === 0
           ? 0
@@ -171,7 +171,7 @@ export default async function HomePage({
         {Math.min(sliceStartIdx + pageSize, totalItems)} of {totalItems}
       </p>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {visibleConferences.length > 0 ? (
           visibleConferences.map((conference) => (
             <ConferenceCard key={conference.id} {...conference} />
@@ -184,7 +184,7 @@ export default async function HomePage({
       </div>
 
       {/* Pagination */}
-      <nav className="flex items-center justify-between" aria-label="Pagination">
+      <nav className="flex items-center justify-between py-6" aria-label="Pagination">
         {prevHref ? (
           <Link href={prevHref} className="rounded border px-3 py-2">
             ← Prev

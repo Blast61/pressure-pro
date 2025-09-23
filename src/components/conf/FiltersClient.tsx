@@ -14,11 +14,13 @@ type FiltersClientProps = {
         maxPrice?: number | null;
         pageSize: number;
     };
+    hideQuery?: boolean;
 };
 
 export default function FiltersClient({
     allCategories,
     initial,
+    hideQuery = false,
 }: FiltersClientProps){
     const router = useRouter();
     const currentSearchParams = useSearchParams();
@@ -48,10 +50,12 @@ export default function FiltersClient({
         nextParams.set("pageSize", String(initial.pageSize));
 
         //Query text
-        if(inputQueryText.trim()){ 
-            nextParams.set("q", inputQueryText.trim());
-        } else {
-            nextParams.delete("q");
+        if(!hideQuery){
+            if(inputQueryText.trim()){ 
+                nextParams.set("q", inputQueryText.trim());
+            } else {
+                nextParams.delete("q");
+            }
         }
 
         //Categories
@@ -75,17 +79,19 @@ export default function FiltersClient({
         }
 
         //Prices (only set if numeric)
-        if(inputMinPrice.trim() !== "") {
-            nextParams.set("minPrice", inputMinPrice.trim());
+        const minNum = Number(inputMinPrice);
+        if(!Number.isNaN(minNum) && inputMinPrice !== ""){
+            nextParams.set("minPrice", String(minNum));
         } else {
             nextParams.delete("minPrice");
         }
-        if(inputMaxPrice.trim() !== ""){
-            nextParams.set("maxPrice", inputMaxPrice.trim());
-        } else{
+
+        const maxNum = Number(inputMaxPrice);
+        if(!Number.isNaN(maxNum) && inputMaxPrice !== "") {
+            nextParams.set("maxPrice", String(maxNum));
+        } else {
             nextParams.delete("maxPrice");
         }
-
         router.push(`/?${nextParams.toString()}`);
     }
 
@@ -97,19 +103,20 @@ export default function FiltersClient({
         <section className="rounded border p-4">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {/* Query text */}
+            {!hideQuery && (
                 <div>
                     <label htmlFor="filter-query" className="block text-sm font-medium">
                         Search
                     </label>
                     <input
-                        id="filter-query"
-                        value={inputQueryText}
-                        onChange={(e) => setInputQueryText(e.target.value)}
-                        placeholder="Conference name..."
-                        className="mt-1 w-full rounded border px-3 py-2"
-                        />
+                    id="filter-query"
+                    value={inputQueryText}
+                    onChange={(e) => setInputQueryText(e.target.value)}
+                    placeholder="Conference name..."
+                    className="mt-1 w-full rounded border px-3 py-2"
+                    />
                 </div>
-
+            )}
                 {/* Start date */}
                 <div>
                     <label htmlFor="filter-start" className="block text-sm font-medium">
