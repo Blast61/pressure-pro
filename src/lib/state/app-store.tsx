@@ -42,6 +42,50 @@ const defaultState: AppState = {
     },
 };
 
+function clamp(n: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, n));
+}
+
+function isValidRegistration(x: unknown): x is RegistrationEntry {
+  if (typeof x !== "object" || x === null) return false;
+  const r = x as Record<string, unknown>;
+  return (
+    typeof r.conferenceId === "string" &&
+    typeof r.name === "string" &&
+    typeof r.email === "string" &&
+    typeof r.registeredAtMs === "number"
+  );
+}
+
+// Initialize from localStorage synchronously so values persist across visits without flicker
+function initFromStorage(): AppState {
+  if (typeof window === "undefined") return defaultState;
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return defaultState;
+    const parsed = JSON.parse(raw) as Partial<AppState>;
+    const theme = parsed?.profile?.theme;
+    const validTheme: UserProfile["theme"] =
+      theme === "light" || theme === "dark" || theme === "system" ? theme : "system";
+    return {
+      favorites: Array.isArray(parsed?.favorites)
+        ? parsed!.favorites.filter((id): id is string => typeof id === "string")
+        : [],
+      registrations: Array.isArray(parsed?.registrations)
+        ? parsed!.registrations.filter(isValidRegistration)
+        : [],
+      profile: {
+        fullName: parsed?.profile?.fullName ?? "",
+        email: parsed?.profile?.email ?? "",
+        preferredPageSize: clamp(Number(parsed?.profile?.preferredPageSize ?? 6) || 6, 1, 24),
+        theme: validTheme,
+      },
+    };
+  } catch {
+    return defaultState;
+  }
+}
+
 /**
  * Pure reducer for global app state. 
  */
@@ -93,31 +137,7 @@ const AppStoreContext = createContext<{
  * AppStoreProvider wraps any part of the tree that needs access to favorites, registrations, or user profile. It persists to localStorage.
  */
 export function AppStoreProvider({ children }: { children: React.ReactNode }) {
-    const [state, dispatch] = useReducer(appReducer, defaultState);
-
-    //Load once on mount
-    useEffect(() => {
-        try{
-            const raw = window.localStorage.getItem(STORAGE_KEY);
-            if(raw) {
-                const parsed = JSON.parse(raw) as Partial<AppState>;
-                dispatch({ type: "set_profile", partial: parsed.profile ?? {} });
-                if(Array.isArray(parsed.favorites)) {
-                    parsed.favorites.forEach((id) => 
-                    dispatch({ type: "toggle_favorite", conferenceId: id })
-                );
-            }
-            if(Array.isArray(parsed.registrations)) {
-                parsed.registrations.forEach((entry) => 
-                dispatch({ type: "add_registration", entry: entry as RegistrationEntry })
-            );
-            }
-            }
-        } catch {
-
-        }
-    }, []);
-
+    const [state, dispatch] = useReducer(appReducer, defaultState, initFromStorage);
     //Persist on changes 
     useEffect(() => {
         try{

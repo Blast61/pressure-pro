@@ -14,6 +14,21 @@ export default function DashboardClient() {
   // Load conferences for resolving favorites/registrations
   const [conferences, setConferences] = useState<Conference[]>([]);
   const [loadingConfs, setLoadingConfs] = useState(true);
+  // Profile editor state
+  const [profileFullName, setProfileFullName] = useState(state.profile.fullName);
+  const [profileEmail, setProfileEmail] = useState(state.profile.email);
+  const [preferredPageSize, setPreferredPageSize] = useState(state.profile.preferredPageSize);
+  const [themeChoice, setThemeChoice] = useState(state.profile.theme);
+
+  // Toast
+  const [toast, setToast] = useState<string | null>(null);
+
+  useEffect(() => {
+    setProfileFullName(state.profile.fullName);
+    setProfileEmail(state.profile.email);
+    setPreferredPageSize(state.profile.preferredPageSize);
+    setThemeChoice(state.profile.theme);
+  }, [state.profile]);
 
   useEffect(() => {
     let isMounted = true;
@@ -66,14 +81,6 @@ export default function DashboardClient() {
     );
   }, [allForNextPick]);
 
-  // Profile editor state
-  const [profileFullName, setProfileFullName] = useState(state.profile.fullName);
-  const [profileEmail, setProfileEmail] = useState(state.profile.email);
-  const [preferredPageSize, setPreferredPageSize] = useState(state.profile.preferredPageSize);
-  const [themeChoice, setThemeChoice] = useState(state.profile.theme);
-
-  // Toast
-  const [toast, setToast] = useState<string | null>(null);
 
   function saveProfile() {
     dispatch({
@@ -85,16 +92,22 @@ export default function DashboardClient() {
         theme: themeChoice,
       },
     });
+    //Store preferred page size as a cookie
+    try{
+      const maxAge = 60 * 6 * 24 * 365 //1 year
+      document.cookie = `pref_page_size=${Math.max(1, Math.min(24, Number(preferredPageSize) || 6)
+      )}; Path=/; Max-Age=${maxAge}`;
+    }catch {}
     setToast("Profile saved ✓");
     setTimeout(() => setToast(null), 2200);
   }
 
   return (
-    <div className="space-y-8">
-      <header>
-        <h1 className="text-2xl font-semibold text-center">Your Dashboard</h1>
+    <div className="container mx-auto max-w-5xl px-4 space-y-8">
+      <header className="text-center">
+        <h1 className="text-3xl font-semibold">Your Dashboard</h1>
         {nextUpcoming && (
-          <p className="mt-1 text-neutral-700 text-center">
+          <p className="mt-1 text-neutral-600 dark:text-neutral-300">
             Next upcoming event starts in{" "}
             <Countdown targetISO={nextUpcoming.date} /> — {nextUpcoming.name}
           </p>
@@ -173,7 +186,7 @@ export default function DashboardClient() {
         {loadingConfs ? (
           <div className="rounded border p-4 text-neutral-600">Loading…</div>
         ) : favoriteConferences.length ? (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 grid-cols-[repeat(auto-fit, minmax(280px, 1fr))] mx-auto max-w-6xl w-full">
             {favoriteConferences.map((conf) => (
               <ConferenceCard key={conf.id} {...conf} />
             ))}
@@ -193,7 +206,7 @@ export default function DashboardClient() {
         {loadingConfs ? (
           <div className="rounded border p-4 text-neutral-600">Loading…</div>
         ) : registeredConferences.length ? (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 grid-cols-[repeat(auto-fit, minmax(280px, 1fr))] mx-auto max-w-6xl w-full">
             {registeredConferences.map((conf) => (
               <ConferenceCard key={conf.id} {...conf} />
             ))}
@@ -210,7 +223,8 @@ export default function DashboardClient() {
         <div
           role="status"
           aria-live="polite"
-          className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded border bg-white px-4 py-2 text-sm shadow"
+          className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded border bg-white px-4 py-2 text-sm shadow
+          bg-white text-neutral-900 border-neutral-200 dark:bg-neutral-900 dark:text-neutral-50 dark:border-neutral-700"
         >
           {toast}
         </div>

@@ -1,7 +1,7 @@
 import ConferenceCard from "@/components/conf/ConferenceCard";
 import SearchPanel from "@/components/conf/SearchPanel";
 import Link from "next/link";
-import { headers } from "next/headers";
+import { headers, cookies } from "next/headers";
 import type { Conference } from "@/lib/types";
 
 type SearchParamMap = Record<string, string | string[] | undefined>;
@@ -58,10 +58,13 @@ export default async function HomePage({
     typeof resolvedParams.page === "string"
       ? Number(resolvedParams.page)
       : 1;
+  const cookieStore = await cookies();
+  const cookiePageSize = Number(cookieStore.get("pref_page_size")?.value ?? "");
+  
   const pageSizeParamRaw =
     typeof resolvedParams.pageSize === "string"
       ? Number(resolvedParams.pageSize)
-      : 6;
+      : (!Number.isNaN(cookiePageSize) && cookiePageSize > 0 ? cookiePageSize : 6);
 
   const pageSize = Math.min(
     24,
