@@ -166,9 +166,9 @@ export default function AdminClient(){
 
     return (
          <div className="space-y-6">
-      <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Admin — Conferences</h1>
-        <button className="rounded border px-3 py-2" onClick={refreshList}>
+      <header className="flex flex-col items-center justify-between gap-3 sm:flex-row">
+        <h1 className="text-3xl font-semibold text-center sm:text-left">Admin — Conferences</h1>
+        <button className="rounded border px-3 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition" onClick={refreshList}>
           Refresh
         </button>
       </header>
