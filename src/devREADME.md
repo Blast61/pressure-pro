@@ -72,6 +72,7 @@ Explore, and get registered for the next big tech conference of the year!
 2. Adding a nav bar for ease of navigation between pages
 3. Improve component responsiveness via custom CSS/Tailwind rulesets.
 4. User profile calendar toggle to switch from the basic dashboard UI to a calendar UI with registered conferences cards displayed as chips (Google Calendar).
+5. Finish support for a light/dark mode toggle. 
 
 ## Technical Tradeoffs
 1. Data & Persistence
