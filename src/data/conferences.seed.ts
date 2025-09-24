@@ -108,6 +108,433 @@ export const SEED_CONFERENCES: Conference[] = [
         
         },
     ],
+     agenda: [
+        {
+            date: "2025-11-18",
+            items: [
+                {
+                start: "08:15",
+                title: "Opening Ceremony",
+            }, {
+                start: "08:35",
+                title: "React beyond the DOM",
+                speakerId: 'erik-rasmussen',
+                track: "summit",
+                description: "It's easy to forget what the creators of React knew from the start: that React is not only for building web pages. Most of us have heard of React Native, that renders to native mobile components, but React doesn't have to render to 'components' at all. There's React PDF to generate PDFs and Ink for building UI in the terminal. At my company, we've built a way for developers to use React to build plugins for our webapp that render to our custom components, giving us full control over the UI design (the 'how'), whilst giving the plugin developer full control UX (the 'what'). In my talk, I'll explain what it's like to build a React renderer and reconciler, what they are and how to use them. I'd like to do a live demo showing how React can be used to convert html to markdown. And then I'd like to demonstrate how React can render to the Real World, by controlling IOT devices.",
+            }, {
+                start: "08:55",
+                title: "QnA with Erik Rasmussen",
+                track: "summit"
+            }, {
+                start: "09:15",
+                title: "Generative UI Beyond Calling Premade Components",
+                speakerId: "shawn-swyx-wang",
+                track: "summit",
+                description: "GPT5 is a better frontend coder than me, and Cerebras Code is a 10x faster coder than me. But 'generative UI' is mostly still stuck in a paradigm of function calling premade widgets. New, fast, coding oriented models create new opportunities for creating truly personal, customized experiences, without the offsetting concern that people want their apps to stay stable and reliable.",
+            }, {
+                start: "09:35",
+                title: "QnA with Shawn Swyx Wang",
+                track: "summit"
+            }, {
+                start: "09:55",
+                title: "TanStack Start 1.0 - A New Full Stack Framework for React and Friends",
+                speakerId: "tanner-linsley",
+                track: "summit",
+                description: "Join Tanner Linsley, creator of TanStack's as he unveils TanStack Start - the full-stack framework for React and Solid. He'll talk about how it can handle the beefiest of full-stack routing requirements, how you can have rich and interactive applications, and why you don't need to compromise between client-side vs server-side application experiences.",
+            }, {
+                start: "09:15",
+                title: "Talk TBA",
+                speakerId: "jimmy-lai",
+                track: "base-camp"
+            }, {
+                start: "09:35",
+                speakerId: "jimmy-lai",
+                title: "QnA with Jimmy Lai",
+                track: 'base-camp'
+            }, {
+                start: "09:55",
+                title: "React Strict Dom: Cross-Platform React Based on the Web",
+                speakerId: "nicolas-gallagher",
+                track: "base-camp",
+                description: "The talk will explain what React Strict DOM is, why it was created, how it was adopted at Meta, how it's being used, the results so far, and the potential next steps.",
+            }, {
+                start: "10:15",
+                title: "QnA with Tanner Linsley",
+                speakerId: "tanner-linsley",
+                track: "summit"
+            }, {
+                start: "10:15",
+                title: "QnA with Nicolas Gallagher",
+                speakerId: "nicolas-gallagher",
+                track: "base-camp"
+            }, {
+                start: "10:25",
+                title: "Break",
+                track: "summit",
+            }, {
+                start: "10:25",
+                title: "Break",
+                track: "base-camp"
+            }, {
+                start: "10:45",
+                title: "Panel Discussion",
+                track: "summit"
+            }, {
+                start: "10:45",
+                title: "5 Tough Conversations Managers Need to Have",
+                speakerId: "kelly-vaughn",
+                track: "base-camp",
+                description: "You don’t get promoted for your communication skills—but the moment you step into leadership, they become your most important asset. Whether you’re an engineer growing into influence or a manager leading a team, knowing how to navigate the human side of work is essential. In this session, we’ll cover five of the toughest conversations you’ll face at work: underperformance, giving feedback, saying “no,” career growth, and setting boundaries. You’ll walk away with practical, repeatable frameworks to approach each conversation with clarity and confidence—building trust, strengthening collaboration, and showing up as the kind of leader people want to work with.",
+            }, {
+                start: "11:00",
+                title: "Talk TBA",
+                track: "summit"
+            }, {
+                start: "11:05",
+                title: "QnA with Kelly Vaughn",
+                speakerId: "kelly-vaughn",
+                track: "base-camp"
+            }, {
+                start: "11:45",
+                title: "QnA with TBA",
+                track: "summit",
+            }, {
+                start: "11:25",
+                title: "Talk TBA",
+                track: "base-camp"
+            }, {
+                start: "11:45",
+                title: "QnA with TBA",
+                track: "base-camp"
+            }, {
+                start: "12:00",
+                title: "Break",
+                track: "summit"
+            }, {
+                start: "12:00",
+                title: "Break",
+                track: "base-camp"
+            }, {
+                start: "13:00",
+                title: "Talk TBA",
+                track: "summit"
+            }, {
+                start: "13:00",
+                title: "React at the Edge: Building a Framework from Scratch(Live)",
+                track: "base-camp",
+                speakerId: "daniel-roe",
+                description: "What would a React framework look like if we built it today—with edge-first deployment, serverless-native rendering, and zero-config developer experience? In this live-coded session, we’ll build a new React framework from scratch using the same open-source engine that powers Nuxt 3. Come see how tooling originally built for Vue can unlock serious performance and DX wins for React.",
+            }, {
+                start: "13:20",
+                title: "QnA with Ken Wheeler",
+                track: "summit"
+            }, {
+                start: "13:40",
+                title: "Lightning Talks",
+                track: "summit"
+            }, {
+                start: "13:20",
+                title: "QnA with Daniel Roe",
+                track: "base-camp"
+            }, {
+                start: "13:40",
+                title: "React at 120FPS: When to Loop",
+                speakerId: "kristopher-baumgartner",
+                description: "How do you make a React app update at 120fps? Many of our React apps are happily event driven but sometimes we need to break into real-time, whether it is for a particle effect, animation, 3D hero or even a game. Time for the forbidden loop. Together we will (briefly) look at when and how to loop state updates in React.",
+                track: "base-camp"
+            }, {
+                start: "14:15",
+                title: "Break",
+                track: "summit"
+            }, {
+                start: "14:00",
+                title: "QnA with Kristopher Baumgartner",
+                track: "base-camp"
+            }, {
+                start: "14:35",
+                title: "Goodbye, useState",
+                track: "summit",
+                speakerId: "david-khourshid",
+                description: "State management is easy, until it's not. Sure, useState() is fine for simple component state management – that's literally what it's for. But as our React apps grow in complexity, the inevitable long chain of useStates make it more difficult to understand and maintain app logic, turning our components into Rube Goldberg machines. React 19 opens up a whole new world of state management patterns that actually make sense for local, shared, and global state. In this talk, we'll transition from using useState() everywhere to discovering how server components, URL parameters, and more can make state management much simpler. We'll also revisit classic hooks, learn about new hooks, and see how 3rd-party state management libraries and local-first apps can be useful. Let's say goodbye (mostly) to useState(), and hello to a future where state management isn't just a stack of setStates."
+            }, {
+                start: "14:55",
+                title: "QnA with David Khourshid",
+                track: "summit"
+            }, {
+                start: "14:10",
+                title: "Break",
+                track: "base-camp"
+            }, {
+                start: "14:35",
+                title: "Styled & SASSy: Choosing the Right Reacat Styling Solution",
+                speakerId: "bree-hall",
+                track: "base-camp",
+                description: "React’s styling landscape is rapidly evolving. With React 19, Tailwind v4, and major changes across the CSS ecosystem, the way we style components needs to be revisited, especially when performance, DX, and scalability are on the line. In this talk, we’ll evaluate three of the most widely used approaches in modern React apps, CSS Modules, Tailwind CSS, and CSS-in-JS, and put them head-to-head against the realities of today’s frontend demands: server components, async rendering, scalable theming, and runtime performance. You’ll walk away with a clear, practical framework for choosing the right styling approach for your project — one that balances developer experience, design system needs, and long-term maintainability. We’ll break down: How React 19 and server components are reshaping styling decisions; Trade-offs between utility-first, scoped CSS, and runtime CSS-in-JS; Common pitfalls that surface at scale and how to future-proof your choice; Whether you're starting a new app or re-evaluating a legacy codebase, this talk will help you make informed, future-focused styling decisions.",
+            }, {
+                start: "14:55",
+                title: "QnA with Bree Hall",
+                track: "base-camp"
+            }, {
+                start: "15:00",
+                title: "DX vs. UX: The RSC False Dichotomy",
+                speakerId: "amy-dutton",
+                track: "summit",
+                description: "React Server Components face a unique challenge in the React ecosystem: they're powerful, but they're primarily associated with a single framework. This talk examines the broader industry implications of RSC's current adoption pattern and why the technology's success depends on ecosystem-wide support, not just Next.js implementation. We'll explore the real barriers to RSC adoption—from legacy codebase constraints to the substantial engineering investment required—and why these challenges have created a subtle industry narrative that 'RSC might not be worth it.' This session provides both a technical assessment of RSC's current capabilities and a strategic view of its role in React's future.",
+            }, {
+                start: "15:35",
+                title: "QnA with Amy Dutton",
+                track: "summit"
+            }, {
+                start: "15:55",
+                title: "How Good is AI at Coding React (really)?",
+                speakerId: "addy-osmani",
+                track: "summit",
+                description: "While developers are increasingly turning to AI assistants for everything from component creation to generating full-blown apps, a critical question remains: just how good is AI at truly understanding and fluently writing production-quality React code? This talk moves beyond the hype to offer a candid, behind-the-scenes look at our work in quantifying the capabilities of large language models, in the real world of web development. We will explore key insights from industry benchmarks on their ability to build functional and interactive web applications using technologies like Next.js. We will share our explorations into building stronger full-stack coding support for React using Gemini. Join us for a data-driven yet deeply human exploration of the current state and future potential of AI code generation in the world of React.",
+            }, {
+                start: "16:15",
+                title: "QnA with Addy Osmani",
+                track: "summit"
+            }, {
+                start: "16:25",
+                title: "Closing Ceremony"
+            }]
+        }, {
+            date: "2025-11-21",
+            items: [
+                {
+                    start: "09:00",
+                    title: "Opening",
+                }, 
+                {
+                    start: "09:10",
+                    title: "Optimizing React Applications: Deep Dive into the React Compiler",
+                    track: "summit",
+                    speakerId: "Vitor Malencar",
+                    description: "React 18 introduces the React Compiler, a powerful tool for optimizing component rendering and enhancing performance. In this talk, we'll explore how the compiler works, demonstrate practical performance improvements, and show you how to integrate these optimizations into your projects. Whether you're working on new or existing applications, you'll leave with actionable insights to harness the full potential of React 18.",
+                }, 
+                {
+                    start: "09:30",
+                    title: "Lessons From Adopting React Compiler",
+                    track: "summit",
+                    speakerId: "akash-hamirwasia",
+                    description:"React Compiler has been around for a while, but how does it hold up in real-world projects? In this talk, I’ll share my experience adopting React Compiler in my product slantit.app, the practical challenges I ran into, and how I debugged and worked around them. I’ll also walk through the measurable impact it had, and what you should know before using it in your own projects.",
+                },
+                {
+                    start: "09:50",
+                    title: "Slots, Slots, Slots, Everybody!",
+                    track: "summit",
+                    speakerId: "abbey-perini",
+                    description: "Let's use slots to fill Lil Jon's club with people! Starting with web components, we'll walk through how to use slots to make highly extensible wrappers for dynamic content. Then we'll talk about how Vue and Angular leverage this HTML feature and how React children are different.",
+                }, 
+                {
+                    start: "09:10",
+                    title: "Practical Guide to Animation in React",
+                    track: "base-camp",
+                    speakerId: "kateryna-porshnieva",
+                    description: "Small animations can make UIs more delightful and improve user experience. In this talk, we’ll explore how to add these animation to your React apps, using everything from simple CSS transitions to more complex spring-based motion. We'll walk through practical examples to show how these animations can enhance user experience without getting in the way. Plus, we'll discuss how to keep them running smoothly and make sure they're accessible to everyone.",
+                }, 
+                {
+                    start: "09:30",
+                    title: "View Transitions in React: A New Era of Seamless UI",
+                    track: "base-camp",
+                    speakerId: "simon-ouyang",
+                    description: "React’s new support for the native View Transitions API unlocks smooth, layout-aware animations between routes and components — no more manual DOM hacks or client-only libraries. In this talk, we’ll explore how to use View Transitions with React 19+, Next.js App Router, and React Server Components to build polished, performance-first UIs with minimal code.",
+                },
+                {
+                    start: "09:50",
+                    title: "Caching, Payloads, and Other Dark Arts: A Frontend Engineer's Journey",
+                    track: "base-camp",
+                    speakerId: "faris-aziz",
+                    description: "but you have zero control over the backend? This was the reality we faced while building a fintech payments dashboard. Massive payloads, strict compliance, and an unchangeable API were slowing operators down and wrecking workflows. In this talk, I’ll walk through our real-world quest to rescue the user experience without touching the backend. You’ll see how we profiled true bottlenecks, built a Backend-for-Frontend layer to reshape data for the UI, managed financial data caching strategies, and balanced performance against several constraints. Expect live demos, battle-tested patterns, and hard-earned lessons for shipping resilient, user-centric frontends, even when the backend isn’t on your side.",
+                }, 
+                {
+                    start: "10:10",
+                    title: "Design to Code Using a Custom Design System with AI",
+                    track: "summit",
+                    speakerId: "chaitanya-deorukhkar",
+                    description: "This talk explores how we built an AI-powered system that transforms Figma designs into production-ready React code using Razorpay’s custom Design System. Learn how we solved the problem of brand inconsistency in generic AI tools and created a solution that understands our unique design language, enabling faster development without compromising on quality.",
+                }, 
+                {
+                   start: "10:30",
+                   title: "When Raspberry Pi Said No to Node: How We Rewired Our Next.js App",
+                   track: "summit",
+                   speakerId: "tapas-adhikary",
+                   description: "What happens when your React + Next.js app, built with the best of charts and animations, suddenly has to run on a device like a Raspberry Pi, with no Node.js, no server runtime, and several hardware constraints? In this talk, I will share the real-world story of reengineering a battery management system for electric vehicles using Next.js, D3.js, and clever frontend-only strategies. From initial roadblocks to lightweight rebuilds — this is an insightful journey into how constraints can drive creativity and architecture choices.",
+                },
+                {
+                    start: "10:50",
+                    title: "Break"
+                },
+                {
+                    start: "10:55",
+                    title: "React Components for both the Client & the Server",
+                    track: "summit",
+                    speakerId: "kiril-peyanski",
+                    description: "React Server Components are changing how we think about component architecture-but in practice, most real-world UIs don’t live purely on the server or the client. In this talk, we’ll explore how to build hybrid components that span both, maintaining a clean separation of concerns while delivering interactivity and performance.",
+                },
+                {
+                    start: "10:10",
+                    title: "Frontend Internationalization That Reads Like English (Thanks, gettext!)",
+                    track: "base-camp",
+                    speakerId: "henry-lie",
+                    description: "What if writing internationalized code could feel as natural as writing plain English? In this talk, we’ll explore how gettext, a time-tested localization standard familiar to many back-end and desktop developers, can bring a more intuitive and streamlined approach to frontend i18n. We’ll see how gettext principles can be applied to modern JavaScript projects to simplify translation workflows, reduce boilerplate, and make your codebase more human-friendly.",
+                }, 
+                {
+                    start: "10:30", 
+                    title: "The Journey of Rebranding 7+ Years Old App",
+                    track: "base-camp",
+                    speakerId: "kasia-jastrzebska",
+                    description: "What does it take to rebrand a massive, legacy codebase without breaking everything—or everyone? Join me on a storytelling journey through Cleo’s rebrand: a 7+ year old financial app built in React Native, layered with AI-powered chat, budget tools, and a credit-building card. This talk is a candid, practical case study on how we tackled technical debt, an inconsistent design system, webviews lurking in corners, and the sheer scale of a complex product. You'll hear how we gathered data, unified design tokens, incentivized adoption across squads, and introduced automation to prepare for the ultimate challenge: running a bold A/B test of two entirely different brand experiences—at scale. Whether you're dealing with a legacy app or planning a design system refresh, this talk offers actionable insights on navigating change in large mobile apps, while keeping your team and user experience intact."
+                },
+                {
+                    start: "10:55",
+                    title: "Building an Operating System with React Native",
+                    track: "base-camp",
+                    speakerId: "hugh-francis",
+                    description: "What happens when you push React Native to its limits? In 2018, we built LightOS - the operating system for the Light Phone II - as a custom fork of AOSP, running  React Native as the view layer. That ecosystem is now the same codebase shipping to long awaited The Light Phone III. This talk reveals the technical journey bolting React Native into the OS level, tackling challenges like rendering at 2fps for e-ink displays, custom batching systems for consistent updates, and embedding React Native directly into Android firmware, running on multiple hardware platforms. You'll discover advanced performance patterns, custom rendering pipelines, and platform integration techniques that apply to any demanding React Native application. The Light Phone II shipped to hundreds of thousands of users and was named one of Time Magazine's best inventions, and the Light Phone III is shipping now to preorder customers."
+                },
+                {
+                    start: "11:15",
+                    title: "This Is How We Made Postman Launch Twice as Fast",
+                    track: "summit",
+                    speakerId: "ruben-casas",
+                    description: "We Made Postman Launch in Half the Time! Postman used to take 30 seconds to launch on some machines which felt like an eternity in the world of developer tools. Our engineers refused to accept that, so we went deep: profiling bottlenecks, re‑evaluating assumptions, and reshaping how the app loads and initializes. In this talk, you’ll learn the six concrete strategies we used to cut launch times in half, from code-splitting and deferring bundles to caching smarter and making Electron work for us, not against us. We’ll walk through how we identified hotspots, experimented with alternatives, and measured wins. You’ll come away with actionable ideas and a roadmap for making any large‑scale React or Electron app launch faster, making your users (and your team) a lot happier.",
+                }, 
+                {
+                    start: "11:35",
+                    title: "Winning the Hydration Battle: Unlocking React Performance with the Power of Suspense",
+                    track: "summit",
+                    speakerId: "gil-eckstein",
+                    description: "Rendering a React app with server-side rendering (SSR) can feel bittersweet - on one hand, SSR ensures fast page load and great SEO by rendering the entire page on the server, however the client must download and hydrate all these components to make the page interactive. For pages with lots of content, this can lead to a significant amount of JavaScript being loaded and executed, causing slower interaction times and major performance issues. At Wix, we faced a significant challenge: how could we deliver blazing-fast interaction times while avoiding the performance bottleneck of downloading and hydrating every SSR-rendered component on the client? For a long time, this felt like an unsolvable problem - until the new Suspense API changed the game. In this talk, I’ll share the story of how we tackled this problem head-on, leveraging the new Suspense API introduced in React 18 to dynamically load and hydrate React components only when they enter the viewport. While Suspense's promise-based rendering capabilities aren’t widely documented, they proved to be the game-changing tool we needed to break free from the limitations of traditional hydration and improve the performance of millions Wix websites. Prepare for a technical deep dive with lots of code examples that will equip you to tackle hydration challenges and boost React performance!",
+                },
+                {
+                    start: "11:55",
+                    title: "React Perfmance Redefined: 10 Lessons from Building a Design Tool",
+                    track: "summit",
+                    speakerId: "shivakant-shukla",
+                    description: "Modern design tools demand pixel-perfect precision, lightning-fast interactions, and massive flexibility — all without compromising performance. In this talk, I’ll take you behind the scenes of building a complex, Canva-like design editor using React. From virtual rendering and custom canvas interactions to state management and component architecture, this talk will cover 10 practical performance lessons we learned (some the hard way!) while pushing React to its limits. You’ll walk away with real-world insights on: Optimizing rendering in dynamic UIs (e.g., drag-and-drop, layers, zooming). Efficient use of useMemo, useCallback, React.memo, and IntersectionObserver. Handling thousands of DOM nodes without crashing the browser. Structuring performant state in large collaborative apps. When to avoid React and drop to raw DOM or canvas APIs. Whether you're building a dashboard, a rich editor, or just curious about scaling React, this talk will sharpen your performance mindset and give you tools to build smoother experiences for your users."
+                },
+                {
+                    start: "11:15",
+                    title: "Seamless BLE-to-Live Activity Sync in React Native - No Push Needed",
+                    speakerId: "rajni-gediya",
+                    track: "base-camp",
+                    description: "Learn how to connect Bluetooth Low Energy (BLE) devices directly to iOS Live Activities in React Native—without using push notifications. I’ll show how I built a custom module that enables real-time updates from a BLE device to the lock screen and Dynamic Island, using Swift and React Native. Perfect for developers working with IoT, wearables, or real-time apps.",
+                }, 
+                {
+                    start: "11:35",
+                    title: "The Journey of a Pixel in a React Application",
+                    speakerId: "shem-magnezi",
+                    track: "base-camp",
+                    description: "Join us as we explore the fascinating journey of a pixel in rendering a React application, starting from the moment a user types a URL into their browser, all the way to the final rendering and interaction phase. We will dive into each stage in detail, covering what happens behind the scenes, why it happens, and how developers can optimize each part for a smoother user experience. This talk will provide insights into key areas like server calls, JavaScript processing, resource fetching, and dynamic rendering. It’s ideal for web developers looking to deepen their understanding of the entire rendering process and find actionable ways to improve application efficiency and performance."
+                }, 
+                {
+                    start: "11:55",
+                    title: "Oh My GHaaD: Git Hosting as a Database",
+                    speakerId: "chris-griffing",
+                    track: "base-camp",
+                    description: "If you squint your eyes enough, git is a multiplayer database. Squint a little more and git hosting providers fill out even more of the needs of a backend for your applications. GitHub and most other providers allow authentication via OAUTH. They provide permissions to make sure only authorized users can modify the data. By leveraging the git provider’s API you can make what is essentially a serverless application. You probably wouldn’t want to host apps on a massive scale this way, but this kind of app is pretty compelling when you are building internal tools. This talk will dig into how such an app can be built and will hopefully inspire developers and companies to build more with less overhead.",
+                },
+                {
+                    start: "12:15",
+                    title: "Design Systems and UI in a Bi-directional World",
+                    speakerId: "matt-seccafien",
+                    track: "summit",
+                    description: "When DeepL added Arabic—its first RTL language—it wasn’t just a styling problem, it was a design systems challenge. This talk will go deep on logical CSS, platform-agnostic icon mirroring and automation, soft enforcement strategies for design consistency, and how to wield influence across hundreds of engineers with minimal headcount. This isn’t a story about building components—it’s about wiring them together at scale, with smart defaults, localization and directional and empathy.",
+                },
+                {
+                    start: "12:35",
+                    title: "Break",
+                    track: "summit"
+                },
+                {
+                    start: "12:25",
+                    title: "Break",
+                    track: "base-camp"
+                },
+                {
+                    start: "12:40",
+                    title: "Deep Dive on React Hooks Architecture",
+                    track: "summit",
+                    speakerId: "daniel-espino-garcia",
+                    description: "Have you ever wonder how React hooks work on the inside? There is a lot of magic going on, like functions being able to store state. How is that possible? Join me and let's do a quick deep dive into how React hooks work on the inside.",
+                },
+                {
+                    start: "12:05",
+                    title: "The No Frills Frontend Migration Survival Guide",
+                    track: "base-camp",
+                    speakerId: "hadar-geva",
+                    description: "Migrating a large frontend application, say, moving from AngularJS to React can feel overwhelming at first. It’s easy to think of it as a huge “all-or-nothing” rewrite. But in reality, a gradual migration, done one piece at a time, is not only possible, it's actually the smarter way to go. In this talk, I’ll walk you through what it really takes to pull off a migration like this without disrupting your team or your product. We’ll look at some of the common challenges you’ll run into like dealing with two different routing systems, keeping state consistent across frameworks, and managing bundle size when both frameworks need to live side by side for a while. We’ll also get into practical strategies that have worked well in real-world projects, including patterns like the Strangler Fig. The goal is to give you a clear, realistic path forward so you can modernize your app, reduce tech debt, and end up with a cleaner, more maintainable codebase all without grinding your velocity.",
+                },
+                {
+                    start: "12:30",
+                    title: "A JavaScript Less Future - New Browser APIs and Their Impact on the Future of React Development",
+                    track: "base-camp",
+                    speakerId: "ameer-sami",
+                    description: "In recent years we've seen browsers deliver powerful APIs such as popover, anchor, Navigation, View Transition, interpolate-size, :has(), and many more. Each addresses a problem that was previously only solve-able with JavaScript. What does this mean for the future of React development? A future with less JavaScript for interaction logic. In this talk we'll discuss how you can leverage these new APIs and the impacts they will have on, application performance, developer experience, user experience, and the future of React app development.",
+                },
+                {
+                    start: "12:50",
+                    title: "Building Browser Extensions with React - That Don't Break Browsers",
+                    track: "base-camp",
+                    speakerId: "johnny-fekete",
+                    description: "Browser extensions face unique challenges that web apps never encounter - from Manifest V3 constraints to cross-script communication. After 4+ years building production ready browser extensions in React, I'll share the architecture patterns, performance optimizations, and debugging techniques that prevent extensions from breaking user browsing experience. You'll learn battle-tested solutions for state management across tabs, inter-script communication, and the performance pitfalls that can kill your extension's adoption.",
+                },
+                {
+                    start: "13:00",
+                    title: "Suspensful Component Composition",
+                    track: "summit",
+                    speakerId: "simeon-griggs",
+                    description: "Suspense is a powerful part of the React library, but almost every example that you see in the documentation falls short of a good implementation. Explore Suspense a little deeper to ensure that your usage does not result in a worse user experience, layout shift, or worse.",
+                },
+                {
+                    start: "13:20",
+                    title: "The Cake Is a Lie... And So Is Your Login's Accessibility",
+                    track: "summit",
+                    speakerId: "ramona-schwering",
+                    description: "Much like the promise of cake in Portal, login forms are everywhere in web development. While they may seem functional at first glance, many users with disabilities encounter a maze of invisible walls, from keyboard traps to inaccessible CAPTCHAs. It's as if GLaDOS designed these forms herself to test us! In this practical walkthrough, we will debug the accessibility issues of a real React login component live, similar to traversing those test chambers: Using an actual screen reader, we'll show how minor improvements, such as proper ARIA implementation and effective focus management, can transform a complex test chamber into a smooth user experience. Additionally, we will address the common pitfalls that GLaDOS might throw at us in both the Portal universe and the real world of accessibility, especially concerning authentication processes and its special needs. So grab your portal gun—let's work together to break down these barriers and ensure that authentication truly works for everyone. The cake might be a lie, but accessibility doesn't have to be!",
+                },
+                {
+                    start: "13:40",
+                    title: "From Pull To Push? - It's Time To Talk About Signals",
+                    track: "summit",
+                    speakerId: "julian-burr",
+                    description: "With the active TC39 proposal in play, I think it’s about time we talk about Signals. Over the years, the concept has had many different names. From “observables” in KnockoutJS, to “refs” in VueJS, before Solid made “signals” popular. We’ve seen the carcinization of frontend frameworks in the pursuit of more seamless and fine-grained reactivity in our applications. But what actually are Signals? Why do we keep coming back to them? And where does React fit into all of this?",
+                },
+                {
+                    start: "13:10",
+                    title: "Secure Micro-Frontends: Authentication Magic at Dutch Railways",
+                    track: "base-camp",
+                    speakerId: "peter-eijgermans",
+                    description: "Jump into an action-packed session where we crack open the hood of Dutch Railways' enterprise micro-frontend platform! We're diving deep into the nuts and bolts of secure authentication across distributed apps using MSAL and OpenID Connect. Watch live as we build a rock-solid authentication setup that works smoothly across multiple apps. See Module Federation in action, handling shared dependencies like a champ while keeping everything locked down tight. From MSAL implementation headaches to OIDC token flows - we'll tackle the real challenges head-on. You'll walk away knowing how to: ✓ Lock down micro-frontends with MSAL authentication ✓ Share secure state across app boundaries ✓ Handle token refresh flows like a pro ✓ Keep your federated modules safe. Bring your toughest auth questions - this no-fluff session packs real solutions from the trenches!"
+                },
+                {
+                    start: "13:30",
+                    title: "Closing",
+                    track: "base-camp"
+                },
+                {
+                    start: "14:00",
+                    title: "Particles, Pixels, and Purpose: Creative Frontend Beyond the Grid",
+                    track: "summit",
+                    speakerId: "cristobal-chao",
+                    description: "A visual journey into the creative edge of frontend—blending shaders, Three.js, and storytelling to craft interactive experiences that move beyond the grid.",
+                },
+                {
+                    start: "14:20",
+                    title: "From TV to Touch: How We Made React UI Work Across Every Input Mode",
+                    track: "summit",
+                    speakerId: "seungho-park",
+                    description: "How do you build a React UI that works flawlessly across remote control, pointer, and touch input all at the same time? In modern TVs like LG StandbyME, users switch between 5-way keys, pointing, and touch swiping naturally, but handling this in your code is far from simple. Based on over a decade of experience building React UI frameworks for TV, I’ll share real-world techniques, design patterns, and lessons learned from creating seamless, adaptive navigation for complex hybrid input environments."
+                },
+                {
+                    start: "14:40",
+                    title: "Closing",
+                    track: "summit"
+                }
+            ]
+        }
+    ],
         maxAttendees: 1000,
         currentAttendees: 800,
         isFeatured: false
