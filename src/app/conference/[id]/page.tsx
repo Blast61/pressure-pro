@@ -8,6 +8,7 @@ import RegistrationForm from "@/components/conf/RegistrationForm";
 import FavoriteButton from "@/components/common/FavoriteButton";
 import Chip from "@/components/common/Chip";
 import SpeakersClient from "@/components/conf/SpeakersClient";
+import Agenda from "@/components/conf/Agenda";
 
 export async function generateMetadata(
     { params }: { params: Promise<{ id: string }> }
@@ -76,6 +77,10 @@ export default async function ConferenceDetail({ params }: { params: Promise<{ i
 
             {/** Speakers with modal */}
             <SpeakersClient speakers={conference.speakers} />
+            {/** Agenda */}
+            {Array.isArray(conference.agenda) && conference.agenda.length > 0 && (
+                <Agenda days={conference.agenda} speakers={conference.speakers} />
+            )}
 
             <RegistrationForm conferenceId={conference.id} dateISO={conference.endDate ?? conference.date} />
         </div>

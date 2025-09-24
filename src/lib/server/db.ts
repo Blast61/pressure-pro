@@ -41,7 +41,16 @@ class ConferenceStore {
         if(!existing){
             throw new Error(`Conference "${id}" not found`);
         }
-        const updated: Conference = { ...existing, ...partial, id: existing.id };
+          const sanitized: Partial<Conference> = {};
+        for (const key of Object.keys(partial) as (keyof Conference)[]) {
+            const value = partial[key];
+            if (value === undefined) continue;                 
+            if (key === "agenda" && value === null) continue;  // don't wipe agenda unless explicitly set
+
+            Object.assign(sanitized, { [key]: value } as Pick<Conference, typeof key>);
+        }
+        const updated: Conference = { ...existing, ...sanitized, id: existing.id };
+        
         this.byId.set(id, updated);
         return { ...updated };
     }
