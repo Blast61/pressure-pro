@@ -1,7 +1,7 @@
 import ConferenceCard from "@/components/conf/ConferenceCard";
 import SearchPanel from "@/components/conf/SearchPanel";
 import Link from "next/link";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import type { Conference } from "@/lib/types";
 
 type SearchParamMap = Record<string, string | string[] | undefined>;
@@ -90,8 +90,14 @@ export default async function HomePage({
   qs.set("page", String(requestedPage));
   qs.set("pageSize", String(pageSize));
 
-  //Server-internal relative fetches work on Vercel
-  const listRes = await fetch(`/api/conferences?${qs.toString()}`, {
+  //Absolute origin 
+  const h = await headers();
+  const host = h.get("host") ?? "localhost:3000";
+  const proto = h.get("x-forwarded-proto") ?? "http";
+  const origin = `${proto}://${host}`;
+
+  // Fetch paginated/filtered list (no-store to avoid stale in-memory copies)
+  const listRes = await fetch(`${origin}/api/conferences?${qs.toString()}`, {
     cache: "no-store",
   });
   const listJson = (await listRes.json()) as ConferencesListResponse;
