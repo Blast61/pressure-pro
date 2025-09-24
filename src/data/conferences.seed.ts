@@ -549,6 +549,30 @@ export const SEED_CONFERENCES: Conference[] = [
         price: 195,
         category: ["Healthcare", "Software Engineering", "AI"],
         imageUrl: "/logos/medTech.png",
+        agenda: [
+            {
+                date: "2025-10-05",
+                items: [
+                    {
+                        start: "8:00",
+                        title: "Sample: Opening Ceremony"
+                    },
+                    {
+                        start: "12:00",
+                        title: "Sample: Lunch"
+                    }
+                ]
+            },
+            {
+                date: "2025-10-08",
+                items: [
+                    {
+                        start: "14:00",
+                        title: "Sample: Closing Ceremony"
+                    }
+                ]
+            }
+        ],
         speakers: [
         {
             id: "0",
@@ -654,6 +678,30 @@ export const SEED_CONFERENCES: Conference[] = [
         price: 175,
         category: ["Blockchain", "web3", "AI"],
         imageUrl: "/logos/blockchain-logo.png",
+        agenda: [
+            {
+                date: "2025-10-22",
+                items: [
+                    {
+                        start: "08:00",
+                        title: "Sample: Opening Ceremony"
+                    },
+                    {
+                        start: "12:00",
+                        title: "Sample: Lunch"
+                    }
+                ]
+            },
+            {
+                date: "2025-10-23",
+                items: [
+                    {
+                        start: "14:00",
+                        title: "Sample: Closing Ceremony"
+                    }
+                ]
+            }
+        ],
         speakers: [
             {
                 id: "0",
@@ -726,6 +774,32 @@ export const SEED_CONFERENCES: Conference[] = [
         price: 2895,
         imageUrl: "/logos/microsoft.png",
         category: ["Software Engineering", "Microsoft", "AI"],
+        agenda: [
+            {
+                date: "2025-11-03",
+                items: [
+                    {
+                        start: "08:00",
+                        title: "Sample: Opening Ceremony",
+                        track: "sample-data"
+                    },
+                    {
+                        start: "12:00",
+                        title: "Sample: Lunch",
+                    }
+                ]
+            },
+            {
+                date: "2025-11-07",
+                items: [
+                    {
+                        start: "14:00",
+                        title: "Sample: Closing Ceremony",
+                        track: "sample-data"
+                    }
+                ]
+            }
+        ],
         speakers: [
             {
                 id: "0",
@@ -822,6 +896,32 @@ export const SEED_CONFERENCES: Conference[] = [
         price: 3580,
         category: ["Software Engineering"],
         imageUrl: "/logos/engineer-logo.png",
+        agenda: [
+            {
+                date: "2025-11-17",
+                items: [
+                    {
+                        start: "08:00",
+                        title: "Sample: Opening Ceremony",
+                        track: "sample-data"
+                    },
+                    {
+                        start: "12:00",
+                        title: "Sample: Lunch",
+                    }
+                ]
+            },
+            {
+                date: "2025-11-21",
+                items: [
+                    {
+                        start: "14:00",
+                        title: "Sample: Closing Ceremony",
+                        track: "sample-data"
+                    }
+                ]
+            }
+        ],
         speakers: [
             {
                 id: "0",
@@ -918,6 +1018,32 @@ export const SEED_CONFERENCES: Conference[] = [
         price: 2099,
         category: ["AWS", "Software Engineering"],
         imageUrl: "/logos/aws.png",
+        agenda: [
+            {
+                date: "2025-12-01",
+                items: [
+                    {
+                        start: "08:00",
+                        title: "Sample: Opening Ceremony",
+                        track: "sample-data"
+                    },
+                    {
+                        start: "12:00",
+                        title: "Sample: Lunch",
+                    }
+                ]
+            },
+            {
+                date: "2025-12-05",
+                items: [
+                    {
+                        start: "14:00",
+                        title: "Sample: Closing Ceremony",
+                        track: "sample-data"
+                    }
+                ]
+            }
+        ],
         speakers: [
             {
                 id: "0",
